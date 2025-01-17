@@ -4253,12 +4253,12 @@
       "id": "opendata_bordeauxmetropole_fr"
     },
     {
-      "title": "Trélazé",
+      "title": "Angers Loire Métropole",
       "module": "data_angers_fr",
       "default_params": {
-        "city": "Trelaze",
-        "address": "1",
-        "typevoie": "ALLEE"
+        "city": "Angers",
+        "address": "Hotel de ville",
+        "typevoie": "Rue"
       },
       "id": "data_angers_fr"
     },

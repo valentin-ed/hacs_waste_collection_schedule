@@ -10867,9 +10867,9 @@
         "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/data_angers_fr.md.",
         "data": {
           "calendar_title": "Calendar Title",
-          "address": "Addresse sans le type de voie",
-          "city": "City",
-          "typevoie": "Type de voie, ALLE,RUE"
+          "typevoie": "Type de voie",
+          "address": "Addresse",
+          "city": "Villle d'Angers Loire Métropole"
         },
         "data_description": {
           "calendar_title": "A more readable, or user-friendly, name for the waste calendar. If nothing is provided, the name returned by the source will be used.",

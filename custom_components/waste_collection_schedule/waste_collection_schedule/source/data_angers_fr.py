@@ -1,5 +1,3 @@
-# https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur&where=typvoie%3D%27ALLEE%27%20and%20libvoie%20like%20%22*cerisier*%22&limit=20&refine=lib_com%3A%22TRELAZE%22
-# https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%2220160304152520700993%22&limit=20
 
 import json
 import urllib.parse
@@ -20,8 +18,8 @@ TEST_CASES = {
     "BEAUCOUZE": {"address": "Montreuil", "city": "BEAUCOUZE","typevoie": "rue"}}
 
 ICON_MAP = {
-    "omr": "mdi:trash-can",
-    "emb": "mdi:recycle",
+    "OM": "mdi:trash-can",
+    "TRI": "mdi:recycle",
     "enc": "mdi:truck-remove",
     "dv": "mdi:leaf",
     "verre": "mdi:bottle-wine",
@@ -104,12 +102,12 @@ class Source:
         response = requests.get(url)
 
         if response.status_code != 200:
-            raise SourceArgumentException("address", "Error response from geocoder")
+            raise SourceArgumentException("address", "Error response from data.angers.fr id secteur api.")
 
         data = response.json()["results"]
         if not data:
             raise SourceArgumentException(
-                "address", "No results found for the given address and INSEE code"
+                "address", "Pas de données depuis l'api, vérifier l'adresse"
             )
 
         return data
@@ -154,14 +152,10 @@ class Source:
                 raise SourceArgumentException(
                     "city", f"Error fetching collection data: {e}"
                 )
-        # print(entries)
         final_entries = []
         for entry in entries:
             for date_str in entry["results"]:
-                # print(date_str)
                 date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
-                # print(datetime(date.year, date.month, date.day))
-                print(date.year, date.month, date.day)
                 final_entries.append(
                     Collection(
                         date = datetime.date(date.year, date.month, date.day),
@@ -169,6 +163,5 @@ class Source:
                         icon=ICON_MAP.get(entry["type"]),
                     )
                 )
-        # print(final_entries)
 
         return final_entries
