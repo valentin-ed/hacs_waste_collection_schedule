@@ -4253,6 +4253,16 @@
       "id": "opendata_bordeauxmetropole_fr"
     },
     {
+      "title": "Trélazé",
+      "module": "data_angers_fr",
+      "default_params": {
+        "city": "Trelaze",
+        "address": "1",
+        "typevoie": "ALLEE"
+      },
+      "id": "data_angers_fr"
+    },
+    {
       "title": "Saumur Val de Loire",
       "module": "publidata_fr",
       "default_params": {

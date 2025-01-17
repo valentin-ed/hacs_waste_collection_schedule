@@ -10862,6 +10862,35 @@
         },
         "data_description": {}
       },
+      "args_data_angers_fr": {
+        "title": "Configure Source",
+        "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/data_angers_fr.md.",
+        "data": {
+          "calendar_title": "Calendar Title",
+          "address": "Addresse sans le type de voie",
+          "city": "City",
+          "typevoie": "Type de voie, ALLE,RUE"
+        },
+        "data_description": {
+          "calendar_title": "A more readable, or user-friendly, name for the waste calendar. If nothing is provided, the name returned by the source will be used.",
+          "address": "Addresse sans le type de voie",
+          "city": "Your city",
+          "typevoie": "Type de voie, ALLE,RUE"
+        }
+      },
+      "reconfigure_data_angers_fr": {
+        "title": "Reconfigure Source",
+        "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/opendata_bordeauxmetropole_fr.md.",
+        "data": {
+          "calendar_title": "Calendar Title",
+          "address": "Address",
+          "city": "City"
+        },
+        "data_description": {
+          "address": "Your full address",
+          "city": "Your city"
+        }
+      },
       "args_stavanger_no": {
         "title": "Configure Source",
         "description": "Configure your service provider. More details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/stavanger_no.md.",

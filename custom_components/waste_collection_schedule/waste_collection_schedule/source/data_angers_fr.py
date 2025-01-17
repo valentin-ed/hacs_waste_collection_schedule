@@ -13,9 +13,7 @@ from waste_collection_schedule.exceptions import SourceArgumentException
 TITLE = "Angers Loire Métropole"
 DESCRIPTION = "Source script for data.angers.fr"
 URL = "https://data.angers.fr/"
-TEST_CASES = {
-
-}
+TEST_CASES = {}
 
 ICON_MAP = {
     "omr": "mdi:trash-can",
@@ -50,9 +48,7 @@ PARAM_TRANSLATIONS = {
     "it": {"address": "Indirizzo", "city": "Città"},
 }
 
-EXTRA_INFO = [
-
-]
+EXTRA_INFO = []
 
 
 class DayNames(Enum):
@@ -77,13 +73,10 @@ DAY_NAME_MAP = {
 
 
 class Source:
-    # https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur&where=typvoie%3D%27ALLEE%27%20and%20libvoie%20like%20%22*cerisier*%22&limit=20&refine=lib_com%3A%22TRELAZE%22
-    # https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%{idsecteur}%22&limit=20
-    geocoder_url = "https://api.publidata.io/v2/geocoder"
-    api_url_waste_calendar = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%{idsecteur}%22&limit=20"
-    api_secteur = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur&where=typvoie%3D%27{typevoie}%27%20and%20libvoie%20like%20%22*{address}*%22&limit=20&refine=lib_com%3A%22{city}%22"
+    api_url_waste_calendar = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%22{idsecteur}%22&limit=20"
+    api_secteur = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur,cat_secteur&where=typvoie%3D%27{typevoie}%27%20and%20libvoie%20like%20%22*{address}*%22&limit=20&refine=lib_com%3A%22{city}%22"
 
-    def __init__(self, address: str, city: str) -> None:
+    def __init__(self, address: str, city: str, typevoie: str) -> None:
         self.address = address
         self.city = city
         self.typevoie = typevoie
@@ -107,14 +100,16 @@ class Source:
         return next_target_date
 
     def _get_idsecteur_address(self, address: str, city: str, typevoie: str) -> dict:
-        
-        url = self.api_secteur.format(city=urllib.parse.quote(self.city.upper()), address=urllib.parse.quote(self.address), typevoie=urllib.parse.quote(self.typevoie.upper()))
+        url = self.api_secteur.format(
+            city=urllib.parse.quote(self.city.upper()),
+            address=urllib.parse.quote(self.address),
+            typevoie=urllib.parse.quote(self.typevoie.upper()),
+        )
 
         response = requests.get(url)
 
         if response.status_code != 200:
-            raise SourceArgumentException(
-                "address", "Error response from geocoder")
+            raise SourceArgumentException("address", "Error response from geocoder")
 
         data = response.json()["results"]
         if not data:
@@ -124,73 +119,62 @@ class Source:
 
         return data
 
-    def _is_within_geo_shape(self, geo_shape: dict, address_params: dict) -> bool:
-        point_lon, point_lat = address_params["lon"], address_params["lat"]
-        polygon = geo_shape["geometry"]["coordinates"][0]
-        _type = geo_shape["geometry"]["type"]
-
-        def is_point_in_polygon(point, polygon) -> bool:
-            x, y = point
-            n = len(polygon)
-            inside = False
-            p1y, p1x = polygon[0]
-            for i in range(n + 1):
-                p2y, p2x = polygon[i % n]
-                if y > min(p1y, p2y):
-                    if y <= max(p1y, p2y):
-                        if x <= max(p1x, p2x):
-                            if p1y != p2y:
-                                xinters = (y - p1y) * (p2x - p1x) / \
-                                    (p2y - p1y) + p1x
-                            if p1x == p2x or x <= xinters:
-                                inside = not inside
-                p1x, p1y = p2x, p2y
-
-            return inside
-
-        if _type == "Polygon":
-            return is_point_in_polygon((point_lon, point_lat), polygon)
-        elif _type == "MultiPolygon":
-            for poly in polygon:
-                if is_point_in_polygon((point_lon, point_lat), poly):
-                    return True
-        return False
-
     def fetch(self) -> list[Collection]:
-        # First we need to get the address parameters from the geocoder
-        address_params = self._get_address_params(self.address)
+        try:
+            id_secteurs = self._get_idsecteur_address(
+                self.address, self.city, self.typevoie
+            )
+        except requests.RequestException as e:
+            raise SourceArgumentException(
+                "address", f"Error fetching address data: {e}"
+            )
 
-        url = self.api_url.format(city=urllib.parse.quote(self.city))
+        entries = []
+        for id_secteur in id_secteurs:
+            try:
+                if id_secteur["cat_secteur"] == "OM":
+                    url = self.api_url_waste_calendar.format(
+                        idsecteur=urllib.parse.quote(id_secteur["id_secteur"])
+                    )
+                    data_om = requests.get(url)
+                    data_om.raise_for_status()
+                    dates_om = [
+                        entry["date_collecte"] for entry in data_om.json()["results"]
+                    ]
+                    entries.append({"type": "OM", "results": dates_om})
 
-        response = requests.get(url)
-
-        if response.status_code != 200:
-            raise SourceArgumentException("city", "Error response from API")
-
-        # Now we need to filter the response to only include the relevant information
-        list_of_infos = [
-            i
-            for i in json.loads(response.text)
-            if i["geo_shape"]
-            and self._is_within_geo_shape(i["geo_shape"], address_params)
-        ]
+                elif id_secteur["cat_secteur"] == "TRI":
+                    url = self.api_url_waste_calendar.format(
+                        idsecteur=urllib.parse.quote(id_secteur["id_secteur"])
+                    )
+                    data_tri = requests.get(url)
+                    data_tri.raise_for_status()
+                    dates_tri = [
+                        entry["date_collecte"] for entry in data_tri.json()["results"]
+                    ]
+                    entries.append({"type": "TRI", "results": dates_tri})
+                else:
+                    raise SourceArgumentException("city", "Error response from API")
+            except requests.RequestException as e:
+                raise SourceArgumentException(
+                    "city", f"Error fetching collection data: {e}"
+                )
 
         filtered_responses: dict[str, list[str]] = {}
-        for response_item in list_of_infos:
+        for response_item in entries:
             waste_collection_per_type = filtered_responses.setdefault(
                 response_item["type"], []
             )
-            for jour_col in response_item["jour_col"]:
+            for jour_col in response_item["results"]:
                 waste_collection_per_type.append(jour_col)
 
-        entries = []
+        final_entries = []
         for _collection_type, _dates in filtered_responses.items():
             for _day in _dates:
                 source_date = datetime.today().date()
                 for _ in range(4):  # Let's generate a month of schedule
-                    next_date = self._get_next_weekday(
-                        source_date, DayNames(_day))
-                    entries.append(
+                    next_date = self._get_next_weekday(source_date, DayNames(_day))
+                    final_entries.append(
                         Collection(
                             date=next_date,  # Next collection date
                             t=LABEL_MAP.get(
@@ -202,4 +186,4 @@ class Source:
                     )
                     source_date = next_date + timedelta(days=1)
 
-        return entries
+        return final_entries
