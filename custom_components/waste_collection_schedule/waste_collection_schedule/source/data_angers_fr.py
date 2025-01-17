@@ -14,51 +14,7 @@ TITLE = "Angers Loire Métropole"
 DESCRIPTION = "Source script for data.angers.fr"
 URL = "https://data.angers.fr/"
 TEST_CASES = {
-    "Bordeaux": {"address": "20 Cr Pasteur", "city": "Bordeaux"},
-    "Mérignac": {"address": "456 Av. de Verdun", "city": "Mérignac"},
-    "Gradignan": {"address": "Avenue de la Libération", "city": "Gradignan"},
-    "Talence": {"address": "Place de l'Église", "city": "Talence"},
-    "Saint-Médard-en-Jalles": {
-        "address": "Rue François Mitterrand",
-        "city": "Saint-Médard-en-Jalles",
-    },
-    "Villenave-d'Ornon": {
-        "address": "Avenue du Maréchal Leclerc",
-        "city": "Villenave-d'Ornon",
-    },
-    "Bruges": {"address": "Rue de la République", "city": "Bruges"},
-    "Bègles": {"address": "Rue Pierre et Marie Curie", "city": "Bègles"},
-    "Le Bouscat": {"address": "Avenue de la Libération", "city": "Le Bouscat"},
-    "Pessac": {"address": "Avenue Jean Jaurès", "city": "Pessac"},
-    "Ambarès-et-Lagrave": {
-        "address": "Pl. du 19 Mars 1962",
-        "city": "Ambarès-et-Lagrave",
-    },
-    "Ambès": {"address": "Rue de la Mairie", "city": "Ambès"},
-    "Blanquefort": {"address": "Rue de la République", "city": "Blanquefort"},
-    "Eysines": {"address": "Avenue de la Libération", "city": "Eysines"},
-    "Le Haillan": {"address": "Rue de la République", "city": "Le Haillan"},
-    "Le Taillan-Médoc": {
-        "address": "Avenue de la Libération",
-        "city": "Le Taillan-Médoc",
-    },
-    "Martignas-sur-Jalle": {
-        "address": "Rue de la République",
-        "city": "Martignas-sur-Jalle",
-    },
-    "Parempuyre": {"address": "Rue de la République", "city": "Parempuyre"},
-    "Saint-Aubin-de-Médoc": {
-        "address": "Rue de la République",
-        "city": "Saint-Aubin-de-Médoc",
-    },
-    "Saint-Louis-de-Montferrand": {
-        "address": "Rue Roget Espagnet",
-        "city": "Saint-Louis-de-Montferrand",
-    },
-    "Saint-Vincent-de-Paul": {
-        "address": "Rue de la Résistance",
-        "city": "Saint-Vincent-de-Paul",
-    },
+
 }
 
 ICON_MAP = {
@@ -95,90 +51,7 @@ PARAM_TRANSLATIONS = {
 }
 
 EXTRA_INFO = [
-    {
-        "title": "Bordeaux",
-        "default_params": {"city": "Bordeaux"},
-    },
-    {
-        "title": "M\u00e9rignac",
-        "default_params": {"city": "M\u00e9rignac"},
-    },
-    {
-        "title": "Gradignan",
-        "default_params": {"city": "Gradignan"},
-    },
-    {
-        "title": "Talence",
-        "default_params": {"city": "Talence"},
-    },
-    {
-        "title": "Saint-M\u00e9dard-en-Jalles",
-        "default_params": {"city": "Saint-M\u00e9dard-en-Jalles"},
-    },
-    {
-        "title": "Villenave-d'Ornon",
-        "default_params": {"city": "Villenave-d'Ornon"},
-    },
-    {
-        "title": "Bruges",
-        "default_params": {"city": "Bruges"},
-    },
-    {
-        "title": "B\u00e8gles",
-        "default_params": {"city": "B\u00e8gles"},
-    },
-    {
-        "title": "Le Bouscat",
-        "default_params": {"city": "Le Bouscat"},
-    },
-    {
-        "title": "Pessac",
-        "default_params": {"city": "Pessac"},
-    },
-    {
-        "title": "Ambar\u00e8s-et-Lagrave",
-        "default_params": {"city": "Ambar\u00e8s-et-Lagrave"},
-    },
-    {
-        "title": "Amb\u00e8s",
-        "default_params": {"city": "Amb\u00e8s"},
-    },
-    {
-        "title": "Blanquefort",
-        "default_params": {"city": "Blanquefort"},
-    },
-    {
-        "title": "Eysines",
-        "default_params": {"city": "Eysines"},
-    },
-    {
-        "title": "Le Haillan",
-        "default_params": {"city": "Le Haillan"},
-    },
-    {
-        "title": "Le Taillan-M\u00e9doc",
-        "default_params": {"city": "Le Taillan-M\u00e9doc"},
-    },
-    {
-        "title": "Martignas-sur-Jalle",
-        "default_params": {"city": "Martignas-sur-Jalle"},
-    },
-    {
-        "title": "Parempuyre",
-        "default_params": {"city": "Parempuyre"},
-    },
-    {
-        "title": "Saint-Aubin-de-M\u00e9doc",
-        "default_params": {"city": "Saint-Aubin-de-M\u00e9doc"},
-    },
-    {
-        "title": "Saint-Louis-de-Montferrand",
-        "default_params": {"city": "Saint-Louis-de-Montferrand"},
-    },
-    {
-        "title": "Saint-Vincent-de-Paul",
-        "default_params": {"city": "Saint-Vincent-de-Paul"},
-    },
+
 ]
 
 
@@ -207,35 +80,13 @@ class Source:
     # https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur&where=typvoie%3D%27ALLEE%27%20and%20libvoie%20like%20%22*cerisier*%22&limit=20&refine=lib_com%3A%22TRELAZE%22
     # https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%{idsecteur}%22&limit=20
     geocoder_url = "https://api.publidata.io/v2/geocoder"
-    api_url = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%{idsecteur}%22&limit=20"
-
-    INSEE_CODES = {
-        "Bordeaux": 33063,
-        "Mérignac": 33281,
-        "Gradignan": 33192,
-        "Talence": 33522,
-        "Saint-Médard-en-Jalles": 33449,
-        "Villenave-d'Ornon": 33550,
-        "Bruges": 33075,
-        "Bègles": 33039,
-        "Le Bouscat": 33069,
-        "Pessac": 33318,
-        "Ambarès-et-Lagrave": 33003,
-        "Ambès": 33004,
-        "Blanquefort": 33056,
-        "Eysines": 33162,
-        "Le Haillan": 33200,
-        "Le Taillan-Médoc": 33519,
-        "Martignas-sur-Jalle": 33273,
-        "Parempuyre": 33312,
-        "Saint-Aubin-de-Médoc": 33376,
-        "Saint-Louis-de-Montferrand": 33434,
-        "Saint-Vincent-de-Paul": 33487,
-    }
+    api_url_waste_calendar = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%{idsecteur}%22&limit=20"
+    api_secteur = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur&where=typvoie%3D%27{typevoie}%27%20and%20libvoie%20like%20%22*{address}*%22&limit=20&refine=lib_com%3A%22{city}%22"
 
     def __init__(self, address: str, city: str) -> None:
         self.address = address
         self.city = city
+        self.typevoie = typevoie
 
     @staticmethod
     def _get_next_weekday(source_date: date, target_day_name: DayNames) -> date:
@@ -255,31 +106,23 @@ class Source:
 
         return next_target_date
 
-    def _get_address_params(self, address: str) -> dict:
-        params: dict[str, str | int] = {
-            "q": address,
-            "citycode": self.INSEE_CODES[self.city],
-            "limit": 10,
-            "lookup": "publidata",
-        }
-        response = requests.get(self.geocoder_url, params=params)
+    def _get_idsecteur_address(self, address: str, city: str, typevoie: str) -> dict:
+        
+        url = self.api_secteur.format(city=urllib.parse.quote(self.city.upper()), address=urllib.parse.quote(self.address), typevoie=urllib.parse.quote(self.typevoie.upper()))
+
+        response = requests.get(url)
 
         if response.status_code != 200:
             raise SourceArgumentException(
                 "address", "Error response from geocoder")
 
-        data = response.json()[0]["data"]["features"]
+        data = response.json()["results"]
         if not data:
             raise SourceArgumentException(
                 "address", "No results found for the given address and INSEE code"
             )
 
-        lat, lon = data[0]["geometry"]["coordinates"]
-        return {
-            "lat": lat,
-            "lon": lon,
-            "address_id": data[0]["properties"]["id"],
-        }
+        return data
 
     def _is_within_geo_shape(self, geo_shape: dict, address_params: dict) -> bool:
         point_lon, point_lat = address_params["lon"], address_params["lat"]
