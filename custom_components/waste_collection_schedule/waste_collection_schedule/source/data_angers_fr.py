@@ -15,7 +15,8 @@ DESCRIPTION = "Source script for data.angers.fr"
 URL = "https://data.angers.fr/"
 TEST_CASES = {
     "TRELAZE": {"address": "cerisiers", "city": "TRELAZE","typevoie": "ALLEE"},
-    "BEAUCOUZE": {"address": "Montreuil", "city": "BEAUCOUZE","typevoie": "rue"}}
+    "BEAUCOUZE": {"address": "Montreuil", "city": "BEAUCOUZE","typevoie": "rue"},
+    "ANGERS": {"address": "Victor Châtenay","city":"ANGERS","typevoie":"AVENUE"}}
 
 ICON_MAP = {
     "OM": "mdi:trash-can",
@@ -104,13 +105,17 @@ class Source:
         if response.status_code != 200:
             raise SourceArgumentException("address", "Error response from data.angers.fr id secteur api.")
 
-        data = response.json()["results"]
+        data = response.json()["results"]    
+
+        # Remove duplicates data from the API    
+        unique_data = [dict(t) for t in {tuple(d.items()) for d in data}]
+
         if not data:
             raise SourceArgumentException(
                 "address", "Pas de données depuis l'api, vérifier l'adresse"
             )
 
-        return data
+        return unique_data
 
     def fetch(self) -> list[Collection]:
         try:
@@ -123,6 +128,7 @@ class Source:
             )
 
         entries = []
+        print(id_secteurs)
         for id_secteur in id_secteurs:
             try:
                 if id_secteur["cat_secteur"] == "OM":
@@ -153,6 +159,7 @@ class Source:
                     "city", f"Error fetching collection data: {e}"
                 )
         final_entries = []
+        # print(entries)
         for entry in entries:
             for date_str in entry["results"]:
                 date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
