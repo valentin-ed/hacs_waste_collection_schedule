@@ -3,7 +3,7 @@
 
 import json
 import urllib.parse
-from datetime import date, datetime, timedelta
+import datetime
 from enum import Enum
 
 import requests
@@ -13,7 +13,9 @@ from waste_collection_schedule.exceptions import SourceArgumentException
 TITLE = "Angers Loire Métropole"
 DESCRIPTION = "Source script for data.angers.fr"
 URL = "https://data.angers.fr/"
-TEST_CASES = {}
+TEST_CASES = {
+    "TRELAZE": {"address": "cerisiers", "city": "TRELAZE","typevoie": "allee"},
+    "BEAUCOUZE": {"address": "Montreuil", "city": "BEAUCOUZE","typevoie": "rue"}}
 
 ICON_MAP = {
     "omr": "mdi:trash-can",
@@ -81,24 +83,6 @@ class Source:
         self.city = city
         self.typevoie = typevoie
 
-    @staticmethod
-    def _get_next_weekday(source_date: date, target_day_name: DayNames) -> date:
-        # Get the current weekday number
-        source_date_weekday = source_date.weekday()
-
-        # Get the target weekday number
-        target_weekday = DAY_NAME_MAP[target_day_name]
-
-        # Calculate the number of days until the next target weekday
-        days_until_target = (target_weekday - source_date_weekday + 7) % 7
-        if days_until_target == 0:  # It is source_date!
-            return source_date
-
-        # Calculate the date of the next target weekday
-        next_target_date = source_date + timedelta(days=days_until_target)
-
-        return next_target_date
-
     def _get_idsecteur_address(self, address: str, city: str, typevoie: str) -> dict:
         url = self.api_secteur.format(
             city=urllib.parse.quote(self.city.upper()),
@@ -159,31 +143,21 @@ class Source:
                 raise SourceArgumentException(
                     "city", f"Error fetching collection data: {e}"
                 )
-
-        filtered_responses: dict[str, list[str]] = {}
-        for response_item in entries:
-            waste_collection_per_type = filtered_responses.setdefault(
-                response_item["type"], []
-            )
-            for jour_col in response_item["results"]:
-                waste_collection_per_type.append(jour_col)
-
+        # print(entries)
         final_entries = []
-        for _collection_type, _dates in filtered_responses.items():
-            for _day in _dates:
-                source_date = datetime.today().date()
-                for _ in range(4):  # Let's generate a month of schedule
-                    next_date = self._get_next_weekday(source_date, DayNames(_day))
-                    final_entries.append(
-                        Collection(
-                            date=next_date,  # Next collection date
-                            t=LABEL_MAP.get(
-                                _collection_type, _collection_type
-                            ),  # Collection type
-                            # Collection icon
-                            icon=ICON_MAP.get(_collection_type),
-                        )
+        for entry in entries:
+            for date_str in entry["results"]:
+                # print(date_str)
+                date = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+                # print(datetime(date.year, date.month, date.day))
+                print(date.year, date.month, date.day)
+                final_entries.append(
+                    Collection(
+                        date = datetime.date(date.year, date.month, date.day),
+                        t=LABEL_MAP[entry["type"]],
+                        icon=ICON_MAP.get(entry["type"]),
                     )
-                    source_date = next_date + timedelta(days=1)
+                )
+        # print(final_entries)
 
         return final_entries
