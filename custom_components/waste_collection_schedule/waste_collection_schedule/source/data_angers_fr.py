@@ -32,24 +32,10 @@ LABEL_MAP = {
 }
 
 PARAM_DESCRIPTIONS = {
-    # "fr": {
-    #     "address": "Votre adresse complète",
-    #     "city": "Votre ville"
-    # },
-    "en": {"address": "Your full address", "city": "Your city"},
-    "de": {"address": "Ihre vollständige Adresse", "city": "Ihre Stadt"},
-    "it": {"address": "Il tuo indirizzo completo", "city": "La tua città"},
 }
 
-PARAM_TRANSLATIONS = {
-    # "fr": {
-    #     "address": "Adresse",
-    #     "city": "Ville"
-    # },
-    "en": {"address": "Address", "city": "City"},
-    "de": {"address": "Adresse", "city": "Stadt"},
-    "it": {"address": "Indirizzo", "city": "Città"},
-}
+CITY = Literal["LES PONTS DE CE","SAINT BARTHELEMY D ANJOU","SAINT CLEMENT DE LA PLACE","SAINTE GEMMES SUR LOIRE","SAINT LAMBERT LA POTHERIE","SAINT LEGER DE LINIERES","SAINT-LEGER-DES-BOIS","SAINT MARTIN DU FOUILLOUX","LOIRE AUTHION","VERRIERES EN ANJOU","SARRIGNE","SAVENNIERES","SOULAINES SUR AUBANCE","SOULAIRE ET BOURG","TRELAZE","RIVES DU LOIR EN ANJOU","ANGERS","AVRILLE","BEAUCOUZE","BEHUARD","BOUCHEMAINE","BRIOLLAY","CANTENAY EPINARD","ECOUFLANT","ECUILLE","FENEU","LONGUENEE EN ANJOU","MONTREUIL JUIGNE","MURS ERIGNE","PELLOUAILLES LES VIGNES","LE PLESSIS GRAMMOIRE"]
+CITY_NAME = ["LES PONTS DE CE","SAINT BARTHELEMY D ANJOU","SAINT CLEMENT DE LA PLACE","SAINTE GEMMES SUR LOIRE","SAINT LAMBERT LA POTHERIE","SAINT LEGER DE LINIERES","SAINT-LEGER-DES-BOIS","SAINT MARTIN DU FOUILLOUX","LOIRE AUTHION","VERRIERES EN ANJOU","SARRIGNE","SAVENNIERES","SOULAINES SUR AUBANCE","SOULAIRE ET BOURG","TRELAZE","RIVES DU LOIR EN ANJOU","ANGERS","AVRILLE","BEAUCOUZE","BEHUARD","BOUCHEMAINE","BRIOLLAY","CANTENAY EPINARD","ECOUFLANT","ECUILLE","FENEU","LONGUENEE EN ANJOU","MONTREUIL JUIGNE","MURS ERIGNE","PELLOUAILLES LES VIGNES","LE PLESSIS GRAMMOIRE"]
 
 TYPE_VOIE = Literal["LEVEE", "RUE", "PASSAGE", "ROUTE", "SQUARE", "LIEU DIT", "CHEMIN", "VENELLE", "AVENUE", "ZAC", "ZA", "BOULEVARD", "PLACE", "ALLEE", "IMPASSE", "PROMENADE", "QUAI", "VOIE", "SENTIER", "COUR", "ESPLANADE", "MAIL", "HAMEAU", "AUTOROUTE", "CARREFOUR", "CLOS", "RUELLE", "RESIDENCE", "MONTEE", "ALLEES", "CITE", "ROND POINT", "BOIS", "ZI", "LOTISSEMENT", "PARC", "GIRATOIRE", "ROCADE", "CLOITRE", "CALE", "ECHANGEUR", "RUETTE", "AIRE", "RAMPE", "PORT", "ZONE", "TRAVERSE", "PARVIS"]
 TYPE_VOIE_NAME = ["LEVEE", "RUE", "PASSAGE", "ROUTE", "SQUARE", "LIEU DIT", "CHEMIN", "VENELLE", "AVENUE", "ZAC", "ZA", "BOULEVARD", "PLACE", "ALLEE", "IMPASSE", "PROMENADE", "QUAI", "VOIE", "SENTIER", "COUR", "ESPLANADE", "MAIL", "HAMEAU", "AUTOROUTE", "CARREFOUR", "CLOS", "RUELLE", "RESIDENCE", "MONTEE", "ALLEES", "CITE", "ROND POINT", "BOIS", "ZI", "LOTISSEMENT", "PARC", "GIRATOIRE", "ROCADE", "CLOITRE", "CALE", "ECHANGEUR", "RUETTE", "AIRE", "RAMPE", "PORT", "ZONE", "TRAVERSE", "PARVIS"]
@@ -58,37 +44,26 @@ CONFIG_FLOW_TYPES = {
         "type": "SELECT",
         "values": [f.lower() for f in TYPE_VOIE_NAME],
         "multiple": False,
+    },
+        "city": {
+        "type": "SELECT",
+        "values": [f for f in CITY_NAME],
+        "multiple": False,
     }
 }
 EXTRA_INFO = []
-
-
-class DayNames(Enum):
-    MONDAY = "LUNDI"
-    TUESDAY = "MARDI"
-    WEDNESDAY = "MERCREDI"
-    THURSDAY = "JEUDI"
-    FRIDAY = "VENDREDI"
-    SATURDAY = "SAMEDI"
-    SUNDAY = "DIMANCHE"
-
-
-DAY_NAME_MAP = {
-    DayNames.MONDAY: 0,
-    DayNames.TUESDAY: 1,
-    DayNames.WEDNESDAY: 2,
-    DayNames.THURSDAY: 3,
-    DayNames.FRIDAY: 4,
-    DayNames.SATURDAY: 5,
-    DayNames.SUNDAY: 6,
-}
 
 
 class Source:
     api_url_waste_calendar = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/calendrier-tri-et-plus/records?select=date_collecte&where=id_secteur%3D%22{idsecteur}%22&limit=20"
     api_secteur = "https://data.angers.fr/api/explore/v2.1/catalog/datasets/secteurs-de-collecte-tri-et-plus/records?select=id_secteur,cat_secteur&where=typvoie%3D%27{typevoie}%27%20and%20libvoie%20like%20%22*{address}*%22&limit=20&refine=lib_com%3A%22{city}%22"
 
-    def __init__(self, address: str, city: str, typevoie: TYPE_VOIE | None = None) -> None:
+ def __init__(
+        self,
+        typevoie: TYPE_VOIE | None = None,
+        address: str | None = None,
+        city: CITY | None = None,
+    ) -> None:
         self.address = address
         self.city = city
         self.typevoie = typevoie
