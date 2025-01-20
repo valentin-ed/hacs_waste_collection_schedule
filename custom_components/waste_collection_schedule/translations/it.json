@@ -2545,23 +2545,42 @@
       },
       "args_montreal_ca": {
         "title": "Configurazione Sorgente",
-        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md.",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. \n\nScarica sul tuo computer un &lt;a href=\"https://donnees.montreal.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/5f3fb372-64e8-45f2-a406-f1614930305c/download/collecte-des-ordures-menageres.geojson\"&gt;file GeoJSON di Montreal&lt;/a&gt;&lt;br/&gt;Visita https://geojson.io/&lt;br/&gt;Clicca su *Apri* e seleziona il file GeoJSON di Montreal&lt;br/&gt;Trova il tuo settore sulla mappa.\n\nMaggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md.",
         "data": {
           "calendar_title": "Nome Calendario",
-          "sector": "Settore"
+          "bulky": "Settore rifiuti ingombranti",
+          "food": "Settore rifiuti organici",
+          "green": "Settore rifiuti verdi",
+          "recycling": "Settore riciclaggio",
+          "sector": "Settore rifiuti"
         },
         "data_description": {
-          "calendar_title": "Puoi cambiare il nome del calendario della raccolta dei rifiuti, altrimenti di default verra' utilizzato il nome del tuo fornitore di servizi."
+          "calendar_title": "Puoi cambiare il nome del calendario della raccolta dei rifiuti, altrimenti di default verra' utilizzato il nome del tuo fornitore di servizi.",
+          "bulky": "Se il valore è diverso dal settore dei rifiuti.",
+          "food": "Se il valore è diverso dal settore dei rifiuti.",
+          "green": "Se il valore è diverso dal settore dei rifiuti.",
+          "recycling": "Se il valore è diverso dal settore dei rifiuti.",
+          "sector": "Questo è il settore predefinito."
         }
       },
       "reconfigure_montreal_ca": {
         "title": "Riconfigurazione Sorgente",
-        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Per maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md.",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. \n\nScarica sul tuo computer un &lt;a href=\"https://donnees.montreal.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/5f3fb372-64e8-45f2-a406-f1614930305c/download/collecte-des-ordures-menageres.geojson\"&gt;file GeoJSON di Montreal&lt;/a&gt;&lt;br/&gt;Visita https://geojson.io/&lt;br/&gt;Clicca su *Apri* e seleziona il file GeoJSON di Montreal&lt;br/&gt;Trova il tuo settore sulla mappa.\n\nPer maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md.",
         "data": {
           "calendar_title": "Nome Calendario",
-          "sector": "Settore"
+          "bulky": "Settore rifiuti ingombranti",
+          "food": "Settore rifiuti organici",
+          "green": "Settore rifiuti verdi",
+          "recycling": "Settore riciclaggio",
+          "sector": "Settore rifiuti"
         },
-        "data_description": {}
+        "data_description": {
+          "bulky": "Se il valore è diverso dal settore dei rifiuti.",
+          "food": "Se il valore è diverso dal settore dei rifiuti.",
+          "green": "Se il valore è diverso dal settore dei rifiuti.",
+          "recycling": "Se il valore è diverso dal settore dei rifiuti.",
+          "sector": "Questo è il settore predefinito."
+        }
       },
       "args_publidata_ca": {
         "title": "Configurazione Sorgente",
@@ -3989,9 +4008,16 @@
         "data": {
           "calendar_title": "Nome Calendario",
           "address_suffix": "Address Suffix",
+          "altkleider_schuhe": "Altkleider Schuhe",
+          "altpapier_buendelsammlung": "Altpapier Buendelsammlung",
+          "altpapier_papiertonne": "Altpapier Papiertonne",
+          "bioenergietonne": "Bioenergietonne",
           "city": "Città",
           "house_number": "Civico",
-          "street": "Strada"
+          "restmuell": "Restmuell",
+          "schadstoffe": "Schadstoffe",
+          "street": "Strada",
+          "verpackungstonne": "Verpackungstonne"
         },
         "data_description": {
           "calendar_title": "Puoi cambiare il nome del calendario della raccolta dei rifiuti, altrimenti di default verra' utilizzato il nome del tuo fornitore di servizi."
@@ -4003,9 +4029,16 @@
         "data": {
           "calendar_title": "Nome Calendario",
           "address_suffix": "Address Suffix",
+          "altkleider_schuhe": "Altkleider Schuhe",
+          "altpapier_buendelsammlung": "Altpapier Buendelsammlung",
+          "altpapier_papiertonne": "Altpapier Papiertonne",
+          "bioenergietonne": "Bioenergietonne",
           "city": "Città",
           "house_number": "Civico",
-          "street": "Strada"
+          "restmuell": "Restmuell",
+          "schadstoffe": "Schadstoffe",
+          "street": "Strada",
+          "verpackungstonne": "Verpackungstonne"
         },
         "data_description": {}
       },
@@ -11039,6 +11072,32 @@
         },
         "data_description": {}
       },
+      "args_kiedysmieci_info": {
+        "title": "Configurazione Sorgente",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/kiedysmieci_info.md.",
+        "data": {
+          "calendar_title": "Nome Calendario",
+          "district": "Distretto",
+          "municipality": "Municipality",
+          "street": "Strada",
+          "voivodeship": "Voivodeship"
+        },
+        "data_description": {
+          "calendar_title": "Puoi cambiare il nome del calendario della raccolta dei rifiuti, altrimenti di default verra' utilizzato il nome del tuo fornitore di servizi."
+        }
+      },
+      "reconfigure_kiedysmieci_info": {
+        "title": "Riconfigurazione Sorgente",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Per maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/kiedysmieci_info.md.",
+        "data": {
+          "calendar_title": "Nome Calendario",
+          "district": "Distretto",
+          "municipality": "Municipality",
+          "street": "Strada",
+          "voivodeship": "Voivodeship"
+        },
+        "data_description": {}
+      },
       "args_sepan_remondis_pl": {
         "title": "Configurazione Sorgente",
         "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/sepan_remondis_pl.md.",
@@ -11742,6 +11801,26 @@
           "calendar_title": "Nome Calendario",
           "city": "Città",
           "street": "Strada"
+        },
+        "data_description": {}
+      },
+      "args_okrab_se": {
+        "title": "Configurazione Sorgente",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/okrab_se.md.",
+        "data": {
+          "calendar_title": "Nome Calendario",
+          "address": "Address"
+        },
+        "data_description": {
+          "calendar_title": "Puoi cambiare il nome del calendario della raccolta dei rifiuti, altrimenti di default verra' utilizzato il nome del tuo fornitore di servizi."
+        }
+      },
+      "reconfigure_okrab_se": {
+        "title": "Riconfigurazione Sorgente",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Per maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/okrab_se.md.",
+        "data": {
+          "calendar_title": "Nome Calendario",
+          "address": "Address"
         },
         "data_description": {}
       },
@@ -15814,6 +15893,29 @@
       "reconfigure_northyorks_selby_gov_uk": {
         "title": "Riconfigurazione Sorgente",
         "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Per maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/northyorks_selby_gov_uk.md.",
+        "data": {
+          "calendar_title": "Nome Calendario",
+          "uprn": "UPRN"
+        },
+        "data_description": {
+          "uprn": "Un modo facile per scoprire il tuo Numero di Riferimento Proprietà Unica (UPRN) è andare su https://www.findmyaddress.co.uk/ e inserire i dettagli del tuo indirizzo."
+        }
+      },
+      "args_norwich_gov_uk": {
+        "title": "Configurazione Sorgente",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/norwich_gov_uk.md.",
+        "data": {
+          "calendar_title": "Nome Calendario",
+          "uprn": "UPRN"
+        },
+        "data_description": {
+          "calendar_title": "Puoi cambiare il nome del calendario della raccolta dei rifiuti, altrimenti di default verra' utilizzato il nome del tuo fornitore di servizi.",
+          "uprn": "Un modo facile per scoprire il tuo Numero di Riferimento Proprietà Unica (UPRN) è andare su https://www.findmyaddress.co.uk/ e inserire i dettagli del tuo indirizzo."
+        }
+      },
+      "reconfigure_norwich_gov_uk": {
+        "title": "Riconfigurazione Sorgente",
+        "description": "Compila i campi per ottenere le informazioni sul tuo servizio di raccolta. Per maggiori informazioni: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/norwich_gov_uk.md.",
         "data": {
           "calendar_title": "Nome Calendario",
           "uprn": "UPRN"

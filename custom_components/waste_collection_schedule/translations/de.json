@@ -2566,23 +2566,42 @@
       },
       "args_montreal_ca": {
         "title": "Quelle konfigurieren",
-        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md",
+        "description": "Konfiguriere deinen Service Provider. \n\nLaden Sie eine &lt;a href=\"https://donnees.montreal.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/5f3fb372-64e8-45f2-a406-f1614930305c/download/collecte-des-ordures-menageres.geojson\"&gt;Montreal GeoJSON-Datei&lt;/a&gt; auf Ihren Computer herunter&lt;br/&gt;Besuchen Sie https://geojson.io/&lt;br/&gt;Klicken Sie auf *Öffnen* und wählen Sie die Montreal GeoJSON-Datei aus&lt;br/&gt;Finden Sie Ihren Sektor auf der Karte.\n\nMehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md",
         "data": {
           "calendar_title": "Kalender Titel",
-          "sector": "Sector"
+          "bulky": "Sperrmüllsektor",
+          "food": "Biomüllsektor",
+          "green": "Grünabfallsektor",
+          "recycling": "Recyclingsektor",
+          "sector": "Abfallsektor"
         },
         "data_description": {
-          "calendar_title": "Ein lesbarerer oder benutzerfreundlicherer Name für den Müllkalender. Wenn nichts angegeben wird, wird der Name der Quelle verwendet."
+          "calendar_title": "Ein lesbarerer oder benutzerfreundlicherer Name für den Müllkalender. Wenn nichts angegeben wird, wird der Name der Quelle verwendet.",
+          "bulky": "Wenn der Wert vom Abfallsektor abweicht.",
+          "food": "Wenn der Wert vom Abfallsektor abweicht.",
+          "green": "Wenn der Wert vom Abfallsektor abweicht.",
+          "recycling": "Wenn der Wert vom Abfallsektor abweicht.",
+          "sector": "Dies ist der Standardsektor."
         }
       },
       "reconfigure_montreal_ca": {
         "title": "Quelle Neu Konfigurieren",
-        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md",
+        "description": "Konfiguriere deinen Service Provider. \n\nLaden Sie eine &lt;a href=\"https://donnees.montreal.ca/dataset/2df0fa28-7a7b-46c6-912f-93b215bd201e/resource/5f3fb372-64e8-45f2-a406-f1614930305c/download/collecte-des-ordures-menageres.geojson\"&gt;Montreal GeoJSON-Datei&lt;/a&gt; auf Ihren Computer herunter&lt;br/&gt;Besuchen Sie https://geojson.io/&lt;br/&gt;Klicken Sie auf *Öffnen* und wählen Sie die Montreal GeoJSON-Datei aus&lt;br/&gt;Finden Sie Ihren Sektor auf der Karte.\n\nMehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/montreal_ca.md",
         "data": {
           "calendar_title": "Kalender Titel",
-          "sector": "Sector"
+          "bulky": "Sperrmüllsektor",
+          "food": "Biomüllsektor",
+          "green": "Grünabfallsektor",
+          "recycling": "Recyclingsektor",
+          "sector": "Abfallsektor"
         },
-        "data_description": {}
+        "data_description": {
+          "bulky": "Wenn der Wert vom Abfallsektor abweicht.",
+          "food": "Wenn der Wert vom Abfallsektor abweicht.",
+          "green": "Wenn der Wert vom Abfallsektor abweicht.",
+          "recycling": "Wenn der Wert vom Abfallsektor abweicht.",
+          "sector": "Dies ist der Standardsektor."
+        }
       },
       "args_publidata_ca": {
         "title": "Quelle konfigurieren",
@@ -4010,9 +4029,16 @@
         "data": {
           "calendar_title": "Kalender Titel",
           "address_suffix": "Hausnummerzusatz",
+          "altkleider_schuhe": "Altkleider Schuhe",
+          "altpapier_buendelsammlung": "Altpapier Buendelsammlung",
+          "altpapier_papiertonne": "Altpapier Papiertonne",
+          "bioenergietonne": "Bioenergietonne",
           "city": "Ort",
           "house_number": "Hausnummer",
-          "street": "Straße"
+          "restmuell": "Restmuell",
+          "schadstoffe": "Schadstoffe",
+          "street": "Straße",
+          "verpackungstonne": "Verpackungstonne"
         },
         "data_description": {
           "calendar_title": "Ein lesbarerer oder benutzerfreundlicherer Name für den Müllkalender. Wenn nichts angegeben wird, wird der Name der Quelle verwendet."
@@ -4024,9 +4050,16 @@
         "data": {
           "calendar_title": "Kalender Titel",
           "address_suffix": "Hausnummerzusatz",
+          "altkleider_schuhe": "Altkleider Schuhe",
+          "altpapier_buendelsammlung": "Altpapier Buendelsammlung",
+          "altpapier_papiertonne": "Altpapier Papiertonne",
+          "bioenergietonne": "Bioenergietonne",
           "city": "Ort",
           "house_number": "Hausnummer",
-          "street": "Straße"
+          "restmuell": "Restmuell",
+          "schadstoffe": "Schadstoffe",
+          "street": "Straße",
+          "verpackungstonne": "Verpackungstonne"
         },
         "data_description": {}
       },
@@ -11081,6 +11114,32 @@
         },
         "data_description": {}
       },
+      "args_kiedysmieci_info": {
+        "title": "Quelle konfigurieren",
+        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/kiedysmieci_info.md",
+        "data": {
+          "calendar_title": "Kalender Titel",
+          "district": "Bezirk",
+          "municipality": "Gemeinde",
+          "street": "Straße",
+          "voivodeship": "Voivodeship"
+        },
+        "data_description": {
+          "calendar_title": "Ein lesbarerer oder benutzerfreundlicherer Name für den Müllkalender. Wenn nichts angegeben wird, wird der Name der Quelle verwendet."
+        }
+      },
+      "reconfigure_kiedysmieci_info": {
+        "title": "Quelle Neu Konfigurieren",
+        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/kiedysmieci_info.md",
+        "data": {
+          "calendar_title": "Kalender Titel",
+          "district": "Bezirk",
+          "municipality": "Gemeinde",
+          "street": "Straße",
+          "voivodeship": "Voivodeship"
+        },
+        "data_description": {}
+      },
       "args_sepan_remondis_pl": {
         "title": "Quelle konfigurieren",
         "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/sepan_remondis_pl.md",
@@ -11784,6 +11843,26 @@
           "calendar_title": "Kalender Titel",
           "city": "Stadt",
           "street": "Straße"
+        },
+        "data_description": {}
+      },
+      "args_okrab_se": {
+        "title": "Quelle konfigurieren",
+        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/okrab_se.md",
+        "data": {
+          "calendar_title": "Kalender Titel",
+          "address": "Addresse"
+        },
+        "data_description": {
+          "calendar_title": "Ein lesbarerer oder benutzerfreundlicherer Name für den Müllkalender. Wenn nichts angegeben wird, wird der Name der Quelle verwendet."
+        }
+      },
+      "reconfigure_okrab_se": {
+        "title": "Quelle Neu Konfigurieren",
+        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/okrab_se.md",
+        "data": {
+          "calendar_title": "Kalender Titel",
+          "address": "Addresse"
         },
         "data_description": {}
       },
@@ -15856,6 +15935,29 @@
       "reconfigure_northyorks_selby_gov_uk": {
         "title": "Quelle Neu Konfigurieren",
         "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/northyorks_selby_gov_uk.md",
+        "data": {
+          "calendar_title": "Kalender Titel",
+          "uprn": "UPRN"
+        },
+        "data_description": {
+          "uprn": "Eine einfache Möglichkeit, Ihre Unique Property Reference Number (UPRN) zu finden, besteht darin, auf https://www.findmyaddress.co.uk/ zu gehen und Ihre Adressdaten einzugeben."
+        }
+      },
+      "args_norwich_gov_uk": {
+        "title": "Quelle konfigurieren",
+        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/norwich_gov_uk.md",
+        "data": {
+          "calendar_title": "Kalender Titel",
+          "uprn": "UPRN"
+        },
+        "data_description": {
+          "calendar_title": "Ein lesbarerer oder benutzerfreundlicherer Name für den Müllkalender. Wenn nichts angegeben wird, wird der Name der Quelle verwendet.",
+          "uprn": "Eine einfache Möglichkeit, Ihre Unique Property Reference Number (UPRN) zu finden, besteht darin, auf https://www.findmyaddress.co.uk/ zu gehen und Ihre Adressdaten einzugeben."
+        }
+      },
+      "reconfigure_norwich_gov_uk": {
+        "title": "Quelle Neu Konfigurieren",
+        "description": "Konfiguriere deinen Service Provider. Mehr details: https://github.com/mampfes/hacs_waste_collection_schedule/blob/master/doc/source/norwich_gov_uk.md",
         "data": {
           "calendar_title": "Kalender Titel",
           "uprn": "UPRN"

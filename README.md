@@ -1137,7 +1137,6 @@ If your service provider is not listed, feel free to open a [source request issu
 - [Landkreis Paderborn (MyMuell App)](/doc/source/jumomind_de.md) / mymuell.de
 - [Landkreis Peine](/doc/ics/ab_peine_de.md) / ab-peine.de
 - [Landkreis Ravensburg](/doc/source/rv_de.md) / rv.de
-- [Landkreis Reutlingen](/doc/source/abfall_io.md) / kreis-reutlingen.de
 - [Landkreis Rhön Grabfeld](/doc/source/landkreis_rhoen_grabfeld.md) / abfallinfo-rhoen-grabfeld.de
 - [Landkreis Rosenheim](/doc/source/awido_de.md) / abfall.landkreis-rosenheim.de
 - [Landkreis Rostock](/doc/source/abfall_lro_de.md) / abfall-lro.de
@@ -1318,6 +1317,7 @@ If your service provider is not listed, feel free to open a [source request issu
 - [TBR Remscheid](/doc/source/muellmax_de.md) / tbr-info.de
 - [TBV Velbert](/doc/source/tbv_velbert_de.md) / tbv-velbert.de
 - [Team Orange (Landkreis Würzburg)](/doc/source/abfall_io.md) / team-orange.info
+- [Technischer Betriebsdienst Reutlingen](/doc/source/app_abfallplus_de.md) / Abfall+ App: tbrapp
 - [Technischer Betriebsdienst Reutlingen](/doc/ics/tbr_reutlingen_de.md) / tbr-reutlingen.de
 - [tonnenleerung.de LK Aichach-Friedberg + Neuburg-Schrobenhausen](/doc/source/tonnenleerung_de.md) / tonnenleerung.de
 - [Tuttlingen](/doc/source/app_abfallplus_de.md) / Abfall+ App: abfallwecker
@@ -1971,6 +1971,7 @@ If your service provider is not listed, feel free to open a [source request issu
 - [Gminne Przedsiębiorstwo Komunalne Sp. z o.o. w Skarszewach](/doc/source/sims_pl.md) / sisms.pl
 - [Gospodarka Odpadami - Pelplin](/doc/source/sims_pl.md) / sisms.pl
 - [Gospodarka Odpadami - Starogard Gdański](/doc/source/sims_pl.md) / sisms.pl
+- [Kiedy śmieci](/doc/source/kiedysmieci_info.md) / kiedysmieci.info
 - [Klient Szablonowy - Ekostrażnik](/doc/source/sims_pl.md) / sisms.pl
 - [Klient Szablonowy - Karty Usług](/doc/source/sims_pl.md) / sisms.pl
 - [KOMUS](/doc/source/sims_pl.md) / sisms.pl
@@ -2043,6 +2044,7 @@ If your service provider is not listed, feel free to open a [source request issu
 - [VA Syd Sophämntning](/doc/source/vasyd_se.md) / vasyd.se
 - [VIVAB Sophämtning](/doc/source/vivab_se.md) / vivab.se
 - [Västervik Miljö & Energi](/doc/source/vmeab_se.md) / vmeab.se
+- [Ökrab Sophämntning](/doc/source/okrab_se.md) / okrab.se
 </details>
 
 <details>
@@ -2286,6 +2288,7 @@ If your service provider is not listed, feel free to open a [source request issu
 - [North Yorkshire Council - Harrogate](/doc/source/northyorks_harrogate_gov_uk.md) / secure.harrogate.gov.uk
 - [North Yorkshire Council - Scarborough](/doc/source/northyorks_scarborough_gov_uk.md) / northyorks.gov.uk
 - [North Yorkshire Council - Selby](/doc/source/northyorks_selby_gov_uk.md) / northyorks.gov.uk
+- [Norwich City Council](/doc/source/norwich_gov_uk.md) / norwich.gov.uk
 - [Nottingham City Council](/doc/source/nottingham_city_gov_uk.md) / nottinghamcity.gov.uk
 - [Oadby and Wigston Council](/doc/source/oadby_wigston_gov_uk.md) / oadby-wigston.gov.uk
 - [Oldham Council](/doc/source/oldham_gov_uk.md) / oldham.gov.uk
