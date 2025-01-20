@@ -7261,14 +7261,6 @@
       "id": "rv_de"
     },
     {
-      "title": "Landkreis Reutlingen",
-      "module": "abfall_io",
-      "default_params": {
-        "key": "514199db585ea04541fe70feead6315f"
-      },
-      "id": "abfall_io"
-    },
-    {
       "title": "Landkreis Rh\u00f6n Grabfeld",
       "module": "landkreis_rhoen_grabfeld",
       "default_params": {},
@@ -8624,6 +8616,14 @@
         "key": "3701fd1ff111f63996ab46a448669ea3"
       },
       "id": "abfall_io"
+    },
+    {
+      "title": "Technischer Betriebsdienst Reutlingen",
+      "module": "app_abfallplus_de",
+      "default_params": {
+        "app_id": "de.abfallplus.tbrapp"
+      },
+      "id": "app_abfallplus_de"
     },
     {
       "title": "Technischer Betriebsdienst Reutlingen",
@@ -12769,6 +12769,12 @@
       "id": "sims_pl"
     },
     {
+      "title": "Kiedy \u015bmieci",
+      "module": "kiedysmieci_info",
+      "default_params": {},
+      "id": "kiedysmieci_info"
+    },
+    {
       "title": "Klient Szablonowy - Ekostra\u017cnik",
       "module": "sims_pl",
       "default_params": {
@@ -13161,6 +13167,12 @@
       "module": "vmeab_se",
       "default_params": {},
       "id": "vmeab_se"
+    },
+    {
+      "title": "\u00d6krab Soph\u00e4mntning",
+      "module": "okrab_se",
+      "default_params": {},
+      "id": "okrab_se"
     }
   ],
   "Switzerland": [
@@ -14694,6 +14706,12 @@
       "module": "northyorks_selby_gov_uk",
       "default_params": {},
       "id": "northyorks_selby_gov_uk"
+    },
+    {
+      "title": "Norwich City Council",
+      "module": "norwich_gov_uk",
+      "default_params": {},
+      "id": "norwich_gov_uk"
     },
     {
       "title": "Nottingham City Council",
